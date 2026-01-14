@@ -1,8 +1,8 @@
-from pydantic import BaseModel, IPvAnyAddress
+from pydantic import BaseModel
 
 
 class Coordinates(BaseModel):
-    ip: IPvAnyAddress
+    ip: str
     lat: float
     lon: float
 
