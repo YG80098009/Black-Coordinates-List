@@ -1,17 +1,33 @@
 import requests
+from app.schemas import Coordinates
 
-class Routs:
-    
-    @staticmethod
-    def cleaning_data(dict_json):
-        dict = {"query": dict_json["query"],
-            "lat": dict_json["lat"],
-            "lon": dict_json["lon"]}
-        return dict
-    
+def get_my_ip(ip: str) -> str: 
+    response = requests.get(f"http://ip-api.com/json/{ip}")
+    data = response.json() 
+    return data.get("query", ip) 
+
+def get_coordinates(ip: str) -> Coordinates:
+    response = requests.get(f"http://ip-api.com/json/{ip}") 
+    data = response.json() 
+    return Coordinates(
+        ip=data.get("query", ip),
+        lat=data.get("lat"),
+        lon=data.get("lon")
+    )
+
+def send_to_service_b(coords: Coordinates):
+    url = "http://localhost:8001/store"
+    response = requests.post(url, json=coords.dict())
+    return response.json()
 
 
-    @staticmethod
-    def send_to_server_b(clean_data):
-        respons = requests.post(f"http://localhost:8001/store/{clean_data}")
-        return respons
+
+
+
+
+
+
+
+
+
+
