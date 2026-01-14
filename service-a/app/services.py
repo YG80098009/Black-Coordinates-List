@@ -13,5 +13,5 @@ class Routs:
 
     @staticmethod
     def send_to_server_b(clean_data):
-        x = requests.post(f"http://localhost:8001/store/{clean_data}")
-        return x
+        respons = requests.post(f"http://localhost:8001/store/{clean_data}")
+        return respons
