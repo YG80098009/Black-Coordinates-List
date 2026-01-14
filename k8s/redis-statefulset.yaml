@@ -17,7 +17,7 @@ spec:
       - name: redis-container
         image: redis:7.1.0
         ports:
-        - containerPort: 80
+        - containerPort: 6379
           name: red-port
         volumeMounts:
         - name: www
