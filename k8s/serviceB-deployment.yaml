@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-b-deployment
+spec:
+  selector:
+    matchLabels:
+      app: service-b
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: service-b
+    spec:
+      containers:
+      - name: blacklist-container
+        image: yehudagav/blacklist:v1
+        ports:
+        - containerPort: 8000

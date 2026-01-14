@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-a-deployment
+spec:
+  selector:
+    matchLabels:
+      app: service-a
+  replicas: 3 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: service-a
+    spec:
+      containers:
+      - name: service-a-container
+        image: arielhalifa/blacklist:v1
+        ports:
+        - containerPort: 8000
